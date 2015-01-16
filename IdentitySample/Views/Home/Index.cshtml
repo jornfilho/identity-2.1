@@ -1,0 +1,233 @@
+﻿@{
+    ViewBag.Title = "Página inicial";
+}
+@section Scripts{
+    <script>
+        $('.nav-tabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    </script>
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET Identity 2.1</h1>
+    <p class="lead">Projeto de customização do ASP.NET Identity sendo utilizado com os bancos de dados SQL Server e MongoDb.</p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <dl>
+            <dt>Web.config</dt>
+            <dd>
+                <p>
+                    Através do web.config você poderá configurar as informações de serviços como:
+                    <ul>
+                        <li><b>SMS Service</b> utilizado no login com "two factor authentication";</li>
+                        <li><b>E-mail Service</b> utilizado no cadastro, lembrete de senha e login com "two factor authentication";</li>
+                        <li><b>Microsoft Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://account.live.com/developers/applications/index">(Gestor de aplicativos)</a></li>
+                        <li><b>Twittwer Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://apps.twitter.com/">(Gestor de aplicativos)</a></li>
+                        <li><b>Google Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://console.developers.google.com/project?authuser=0">(Gestor de aplicativos)</a></li>
+                        <li><b>Facebook Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://developers.facebook.com/apps">(Gestor de aplicativos)</a></li>
+                        <li>Dados de conexão com o banco <b>MongoDB</b>, caso seja o banco utilizado;</li>
+                        <li>String de conexão com o <b>Sql Server</b>, caso seja o banco utilizado;</li>
+                    </ul>
+                </p>
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-12" role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="#sql-server" aria-controls="sql-server" role="tab" data-toggle="tab">SqlServer</a></li>
+            <li role="presentation" class="active"><a href="#mongo-db" aria-controls="mongo-db" role="tab" data-toggle="tab">MongoDb</a></li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" id="sql-server">
+                <div class="col-md-6">
+                    <dl>
+                        <dt>Roles</dt>
+                        <dd>
+                            Para que possa gerenciar as roles da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
+                            <ol>
+                                <li>Na janela SQL Server Object Explorer acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
+                                <li>Acesse a tabela "AspNetRoles" e insira um registro com o nome "Admin" para acesso master ao módulos de gestão;</li>
+                                <li>Acesse a tabela "AspNetUserRoles" e insira um registro para relacionar o usuário master a regra "Admin";</li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Claims" onde poderá gerenciar as claims da aplicação.<br />
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl>
+                        <dt>Claims</dt>
+                        <dd>
+                            Para que possa gerenciar as claims da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
+                            <ol>
+                                <li>Na janela SQL Server Object Explorer acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
+                                <li>Acesse a tabela "AspNetClaims" e insira um registro com o nome "AdmClaims" para acesso master ao módulos de gestão;</li>
+                                <li>Acesse a tabela "AspNetUserClaims" e insira um registro para relacionar o usuário master a regra "AdmClaims";</li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Roles" onde poderá gerenciar as roles da aplicação.<br />
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl>
+                        <dt>Users</dt>
+                        <dd>
+                            Para que possa gerenciar os usuários, relacioná-los as claims e roles, siga os passos abaixo.
+                            <ol>
+                                <li>Acesse o módulo /ClaimsAdmim/ e adicione o claim "AdmUsers";</li>
+                                <li>Acesse a tabela "AspNetUserClaims" e insira um registro para relacionar o usuário master a regra "AdmUsers";</li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Users" onde poderá gerenciar os usuários da aplicação.<br />
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane active" id="mongo-db">
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Roles</dt>
+                        <dd>
+                            Para que possa gerenciar as roles da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
+                            <ol>
+                                <li>No cliente mongo de sua preferência, acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
+                                <li>
+                                    Crie a collection de roles executando o seguinte script:
+                                    <pre>
+db.createCollection("aspnet-identity-roles");
+</pre>
+                                </li>
+                                <li>
+                                    Insira o registro de "Admin" na collection "aspnet-identity-roles" executando o seguinte script:
+                                    <pre>
+db['aspnet-identity-roles'].insert({
+    "name":"Admin"
+});
+</pre>
+                                </li>
+                                <li>
+                                    Acesse a collection "aspnet-identity-users" e identifique o usuário master da aplicação que irá gerenciar as roles executando o seguinte script:
+                                    <pre>
+db['aspnet-identity-users'].find();
+</pre>
+                                </li>
+                                <li>
+                                    Edite o registro do usuário master adicionando a ele o "name" da role "Admin" para que haja permissão.
+                                    Execute o seguinte comando para executar a operação:
+                                    <pre>
+db['aspnet-identity-users'].update(
+    {"_id":ObjectId("ID DO USUARIO")},
+    { $push: { "Roles": "Admin" } }
+)
+</pre>
+                                </li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Claims" onde poderá gerenciar as claims da aplicação.<br/>
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Claims</dt>
+                        <dd>
+                            Para que possa gerenciar as claims da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
+                            <ol>
+                                <li>No cliente mongo de sua preferência, acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
+                                <li>
+                                    Crie a collection de claims executando o seguinte script:
+                                    <pre>
+db.createCollection("aspnet-identity-claims");
+</pre>
+                                </li>
+                                <li>
+                                    Insira o registro de "AdmClaims" na collection "aspnet-identity-claims" executando o seguinte script:
+                                    <pre>
+db['aspnet-identity-claims'].insert({
+    "name":"AdmClaims"
+});
+</pre>
+                                </li>
+                                <li>
+                                    Acesse a collection "aspnet-identity-users" e identifique o usuário master da aplicação que irá gerenciar as claims executando o seguinte script:
+                                    <pre>
+db['aspnet-identity-users'].find();
+</pre>
+                                </li>
+                                <li>
+                                    Edite o registro do usuário master adicionando a ele a claim "AdmClaims" para que haja permissão. Execute o seguinte comando para executar a operação:
+                                    <pre>
+db['aspnet-identity-users'].update(
+    {"_id":ObjectId("ID DO USUARIO")},
+    { $push: { "Claims": {
+        "type": "AdmClaims",
+        "value": "True"
+    } } }
+)
+</pre>
+                                </li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Claims" onde poderá gerenciar as claims da aplicação.<br/>
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Users</dt>
+                        <dd>
+                            Para que possa gerenciar os usuários, relacioná-los as claims e roles, siga os passos abaixo.
+                            <ol>
+                                <li>Acesse o módulo /ClaimsAdmim/ e adicione o claim "AdmUsers";</li>
+                                <li>
+                                    Acesse a collection "aspnet-identity-users" e identifique o usuário master da aplicação que irá gerenciar as claims executando o seguinte script:
+<pre>
+db['aspnet-identity-users'].find();
+</pre>
+                                </li>
+                                <li>
+                                    Edite o registro do usuário master adicionando a ele a claim "AdmUsers" para que haja permissão. Execute o seguinte comando para executar a operação:
+                                    <pre>
+ db['aspnet-identity-users'].update(
+    {"_id":ObjectId("ID DO USUARIO")},
+    { $push: { "Claims": {
+        "type": "AdmUsers",
+        "value": "True"
+    } } }
+)
+</pre>
+                                </li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Users" onde poderá gerenciar os usuários da aplicação.<br />
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+                http://robomongo.org/
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-12">
+        <dl>
+            <dt>Referências</dt>
+            <dd>
+                O projeto teve as seguintes referências:
+                <ul>
+                    <li><a href="http://eduardopires.net.br/2014/08/asp-net-identity-tutorial-completo/" target="_blank">Eduardo Pires</a></li>
+                    <li><a href="http://devblog.weshigbee.name/posts/building-a-mongodb-provider-for-the-new-asp.net-identity-framework-part-1" target="_blank">WES HIGBEE | dev blog</a></li>
+                    <li><a href="http://brockallen.com/2014/04/09/introducing-thinktecture-identitymanager/" target="_blank">Blog Brockallen</a></li>
+                    <li><a href="https://github.com/g0t4/aspnet-identity-mongo-sample" target="_blank">Projeto aspnet-identity-mongo-sample</a></li>
+                    <li><a href="https://github.com/g0t4/aspnet-identity-mongo" target="_blank">Projeto aspnet-identity-mongo</a></li>
+                    <li><a href="https://github.com/InspectorIT/MongoDB.AspNet.Identity" target="_blank">Projeto MongoDB.AspNet.Identity</a></li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>

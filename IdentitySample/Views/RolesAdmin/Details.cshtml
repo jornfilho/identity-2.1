@@ -1,0 +1,45 @@
+﻿@model IdentitySample.ViewModels.Role.RoleDetailsViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes.</h2>
+
+<div>
+    <h4>Roles.</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<h4>Lista de usuários nesta Role</h4>
+@if (ViewBag.UserCount == 0)
+{
+    <hr />
+    <p>Nenhum usuário nesta Role.</p>
+}
+
+<table class="table">
+
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>
+                @item
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar para a lista", "Index")
+</p>
+
+
+

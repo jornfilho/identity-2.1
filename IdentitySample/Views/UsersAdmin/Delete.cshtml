@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Deletar";
+}
+
+<h2>Deletar.</h2>
+
+<h3>Você tem certeza que deseja deletar @ViewBag.UserName</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @ViewBag.UserName
+        </dt>
+
+        <dd>
+            @ViewBag.UserName
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index")
+        </div>
+    }
+</div>

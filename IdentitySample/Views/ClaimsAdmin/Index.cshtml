@@ -1,0 +1,34 @@
+﻿@model IdentitySample.ViewModels.Claim.ClaimsListViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Criar nova Claim", "CreateClaim")
+</p>
+<table class="table">
+    @{
+        if (Model.Claims != null)
+        {
+            var claims = Model.Claims;
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(c => c.Claims)
+                </th>
+                <th></th>
+            </tr>
+
+            foreach (var claim in claims)
+            {
+                <tr>
+                    <td>
+                        @claim.Name
+                    </td>
+                </tr>
+            }
+        }
+}
+</table>

@@ -1,0 +1,99 @@
+Controllers/AccountController
+	Remover:
+		using IdentitySample.Identity.SqlServer;
+		using IdentitySample.Identity.SqlServer.Manager;		
+	Adicionar
+		using IdentitySample.Identity.MongoDb;
+		using IdentitySample.Identity.MongoDb.Manager;
+
+Controllers/ClaimsAdminController
+	Remover
+		using IdentitySample.Identity.SqlServer;
+		using IdentitySample.Identity.SqlServer.Manager;
+		using IdentitySample.Identity.SqlServer.Models;
+	Adicionar
+		using IdentitySample.Identity.MongoDb;
+		using IdentitySample.Identity.MongoDb.Manager;
+		using IdentitySample.Identity.MongoDb.Models;
+	Comentar as linhas de 118 a 130
+	Descomentar as linhas de 134 a 145
+		
+Controllers/HomeController
+	Remover
+		using IdentitySample.Identity.SqlServer;
+		using IdentitySample.Identity.SqlServer.Manager;
+	Adicionar
+		using IdentitySample.Identity.MongoDb;
+		using IdentitySample.Identity.MongoDb.Manager;
+		
+Controllers/ManageController
+	Remover
+		using IdentitySample.Identity.SqlServer;
+		using IdentitySample.Identity.SqlServer.Manager;
+	Adicionar
+		Remover
+		using IdentitySample.Identity.MongoDb;
+		using IdentitySample.Identity.MongoDb.Manager;
+		
+Controllers/RolesAdminController
+	Remover
+		using IdentitySample.Identity.SqlServer;
+		using IdentitySample.Identity.SqlServer.Manager;
+		using Microsoft.AspNet.Identity.EntityFramework;
+	Adicionar
+		using IdentitySample.Identity.MongoDb;
+		using IdentitySample.Identity.MongoDb.Manager;
+		using IdentitySample.Identity.MongoDb.Models;
+		
+Controllers/UserAdminController
+	Remover
+		using IdentitySample.Identity.SqlServer;
+		using IdentitySample.Identity.SqlServer.Manager;
+	Adicionar
+		using IdentitySample.Identity.MongoDb;
+		using IdentitySample.Identity.MongoDb.Manager;
+		
+App_Start/Startup.Auth
+	Remover
+		using IdentitySample.Identity.SqlServer.Manager;
+	Adicionar
+		using IdentitySample.Identity.MongoDb.Manager;	
+	Comente as linhas 25 e 26;
+	Descomente a linhas 30 e 31;	
+	Comentar as linhas de 39 a 62;
+	Descomentar as linhas de 66 a 90;	
+		
+ViewModels/Claim/ClaimsListViewModel
+	Remover
+		using IdentitySample.Identity.SqlServer.Models;
+	Adicionar
+		using IdentitySample.Identity.MongoDb.Models;
+		
+ViewModels/Home/SignOutViewModel
+	Remover
+		using IdentitySample.Identity.SqlServer.Models;
+	Adicionar
+		using IdentitySample.Identity.MongoDb.Models;
+		
+Controller/ClaimsAdminController
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Resolver problemas com gerenciador de usuarios;
+Buscar por DEMO: e avisar quais arquivos estão com isso;
+
+<!-- Google Login -->
+<add key="GoogleLogin-Id" value="267729874119.apps.googleusercontent.com" />
+<add key="GoogleLogin-Secret" value="3mS9TDLLVZJsL0IYuwzyTvc4" />
+<add key="GoogleLogin-Enabled" value="true" />
+
+<!-- Facebook Login -->
+<add key="FacebookLogin-Id" value="329094370526750" />
+<add key="FacebookLogin-Secret" value="337ebaae573889828d15f7101a406a0a" />
+<add key="FacebookLogin-Enabled" value="true" />
