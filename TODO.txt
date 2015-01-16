@@ -85,7 +85,6 @@ Controller/ClaimsAdminController
 	
 	
 	
-Resolver problemas com gerenciador de usuarios;
 Buscar por DEMO: e avisar quais arquivos estão com isso;
 
 <!-- Google Login -->

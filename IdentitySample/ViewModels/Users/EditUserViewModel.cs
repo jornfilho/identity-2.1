@@ -14,5 +14,6 @@ namespace IdentitySample.ViewModels.Users
         public string Email { get; set; }
 
         public IEnumerable<SelectListItem> RolesList { get; set; }
+        public IEnumerable<SelectListItem> ClaimsList { get; set; }
     }
 }

@@ -47,6 +47,20 @@ namespace IdentitySample.Controllers
                 _roleManager = value;
             }
         }
+
+        private ApplicationDbContext _dbContext;
+
+        public ApplicationDbContext DbContext
+        {
+            get
+            {
+                if (_dbContext == null)
+                    _dbContext = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
+
+                return _dbContext;
+            }
+            set { _dbContext = value; }
+        }
         #endregion
 
         #region Construtor
@@ -65,8 +79,7 @@ namespace IdentitySample.Controllers
         // GET: /Users/
         public async Task<ActionResult> Index()
         {
-            var users = await UserManager.Users.ToListAsync();
-            
+            var users = UserManager.Users;
             ICollection<UsersIndexViewModel> viewModel = new Collection<UsersIndexViewModel>();
             if (users != null)
                 viewModel = users.Select(u => new UsersIndexViewModel {Id = u.Id, Name = u.UserName}).ToList();
@@ -111,7 +124,8 @@ namespace IdentitySample.Controllers
         public async Task<ActionResult> Create()
         {
             //Get the list of Roles
-            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
+            var roles = RoleManager.Roles;
+            ViewBag.RoleId = new SelectList(roles, "Name", "Name");
             return View();
         }
 
@@ -167,7 +181,6 @@ namespace IdentitySample.Controllers
             }
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
-
             return View(new EditUserViewModel()
             {
                 Id = user.Id,
@@ -177,6 +190,11 @@ namespace IdentitySample.Controllers
                     Selected = userRoles.Contains(x.Name),
                     Text = x.Name,
                     Value = x.Name
+                }),
+                ClaimsList = user.Claims.ToList().Select(x => new SelectListItem
+                {
+                    Text = x.Type,
+                    Value = x.Value
                 })
             });
         }
