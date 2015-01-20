@@ -193,8 +193,8 @@ namespace IdentitySample.Controllers
                 }),
                 ClaimsList = user.Claims.ToList().Select(x => new SelectListItem
                 {
-                    Text = x.Type,
-                    Value = x.Value
+                    Text = x.ClaimType,
+                    Value = x.ClaimValue
                 })
             });
         }

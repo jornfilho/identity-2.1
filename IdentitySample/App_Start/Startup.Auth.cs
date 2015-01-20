@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Facebook;
 using Microsoft.AspNet.Identity;
 using IdentitySample.Identity;
 using IdentitySample.Identity.Configurations;
-using IdentitySample.Identity.MongoDb.Manager;
+using IdentitySample.Identity.MongoDb.Manager;	
 using DevUtils.PrimitivesExtensions;
 using DevUtils.WebConfig;
 
@@ -23,7 +23,7 @@ namespace IdentitySample
         {
             #region Sql Server
             //ConfigureSqlServerContext(ref app);
-            //CookieAuthenticationProvider cookieAuthenticationProvider = GetSqlServerCookieAuthenticationProvider(); 
+            //CookieAuthenticationProvider cookieAuthenticationProvider = GetSqlServerCookieAuthenticationProvider();
             #endregion
 
             #region MongoDb

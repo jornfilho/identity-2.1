@@ -17,79 +17,169 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <dl>
-            <dt>Web.config</dt>
-            <dd>
-                <p>
-                    Através do web.config você poderá configurar as informações de serviços como:
-                    <ul>
-                        <li><b>SMS Service</b> utilizado no login com "two factor authentication";</li>
-                        <li><b>E-mail Service</b> utilizado no cadastro, lembrete de senha e login com "two factor authentication";</li>
-                        <li><b>Microsoft Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://account.live.com/developers/applications/index">(Gestor de aplicativos)</a></li>
-                        <li><b>Twittwer Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://apps.twitter.com/">(Gestor de aplicativos)</a></li>
-                        <li><b>Google Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://console.developers.google.com/project?authuser=0">(Gestor de aplicativos)</a></li>
-                        <li><b>Facebook Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://developers.facebook.com/apps">(Gestor de aplicativos)</a></li>
-                        <li>Dados de conexão com o banco <b>MongoDB</b>, caso seja o banco utilizado;</li>
-                        <li>String de conexão com o <b>Sql Server</b>, caso seja o banco utilizado;</li>
-                    </ul>
-                </p>
-            </dd>
-        </dl>
-    </div>
     <div class="col-md-12" role="tabpanel">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#sql-server" aria-controls="sql-server" role="tab" data-toggle="tab">SqlServer</a></li>
-            <li role="presentation"><a href="#mongo-db" aria-controls="mongo-db" role="tab" data-toggle="tab">MongoDb</a></li>
+            <li role="presentation" class="active"><a href="#initial-configurations" aria-controls="initial-configurations" role="tab" data-toggle="tab">Configurações iniciais</a></li>
+            <li role="presentation"><a href="#mongo-db" aria-controls="mongo-db" role="tab" data-toggle="tab">Utilizando MongoDb</a></li>
+            <li role="presentation"><a href="#sql-server" aria-controls="sql-server" role="tab" data-toggle="tab">Utilizando SqlServer</a></li>
+            <li role="presentation"><a href="#references" aria-controls="references" role="tab" data-toggle="tab">Referências</a></li>
         </ul>
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="sql-server">
-                <div class="col-md-6">
+            <div role="tabpanel" class="tab-pane active" id="initial-configurations">
+                <div class="col-md-12">
                     <dl>
-                        <dt>Roles</dt>
+                        <dt>Web.config</dt>
                         <dd>
-                            Para que possa gerenciar as roles da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
-                            <ol>
-                                <li>Na janela SQL Server Object Explorer acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
-                                <li>Acesse a tabela "AspNetRoles" e insira um registro com o nome "Admin" para acesso master ao módulos de gestão;</li>
-                                <li>Acesse a tabela "AspNetUserRoles" e insira um registro para relacionar o usuário master a regra "Admin";</li>
-                            </ol>
-                            Isso irá liberar o menu "Admin Claims" onde poderá gerenciar as claims da aplicação.<br />
-                            Caso o menu não esteja visível, efetue o logout e login.
+                            <p>
+                                Através do web.config você poderá configurar as informações de serviços como:
+                                <ul>
+                                    <li><b>SMS Service</b> utilizado no login com "two factor authentication";</li>
+                                    <li><b>E-mail Service</b> utilizado no cadastro, lembrete de senha e login com "two factor authentication";</li>
+                                    <li><b>Microsoft Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://account.live.com/developers/applications/index">(Gestor de aplicativos)</a></li>
+                                    <li><b>Twittwer Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://apps.twitter.com/">(Gestor de aplicativos)</a></li>
+                                    <li><b>Google Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://console.developers.google.com/project?authuser=0">(Gestor de aplicativos)</a></li>
+                                    <li><b>Facebook Login</b> para utilização nos logins/registros sociais; <a target="_blank" href="https://developers.facebook.com/apps">(Gestor de aplicativos)</a></li>
+                                    <li>Dados de conexão com o banco <b>MongoDB</b>, caso seja o banco utilizado;</li>
+                                    <li>String de conexão com o <b>Sql Server</b>, caso seja o banco utilizado;</li>
+                                </ul>
+                            </p>
                         </dd>
                     </dl>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <dl>
-                        <dt>Claims</dt>
+                        <dt>Configurações do Identity</dt>
                         <dd>
-                            Para que possa gerenciar as claims da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
-                            <ol>
-                                <li>Na janela SQL Server Object Explorer acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
-                                <li>Acesse a tabela "AspNetClaims" e insira um registro com o nome "AdmClaims" para acesso master ao módulos de gestão;</li>
-                                <li>Acesse a tabela "AspNetUserClaims" e insira um registro para relacionar o usuário master a regra "AdmClaims";</li>
-                            </ol>
-                            Isso irá liberar o menu "Admin Roles" onde poderá gerenciar as roles da aplicação.<br />
-                            Caso o menu não esteja visível, efetue o logout e login.
-                        </dd>
-                    </dl>
-                </div>
-                <div class="col-md-6">
-                    <dl>
-                        <dt>Users</dt>
-                        <dd>
-                            Para que possa gerenciar os usuários, relacioná-los as claims e roles, siga os passos abaixo.
-                            <ol>
-                                <li>Acesse o módulo /ClaimsAdmim/ e adicione o claim "AdmUsers";</li>
-                                <li>Acesse a tabela "AspNetUserClaims" e insira um registro para relacionar o usuário master a regra "AdmUsers";</li>
-                            </ol>
-                            Isso irá liberar o menu "Admin Users" onde poderá gerenciar os usuários da aplicação.<br />
-                            Caso o menu não esteja visível, efetue o logout e login.
+                            <p>
+                                No arquivo <i>/Identity/IdentityConfigurations.cs</i> estão as seguintes configurações:
+                                <ul>
+                                    <li>Dados de validações de usuário;</li>
+                                    <li>Validador de password;</li>
+                                    <li>Lockout;</li>
+                                    <li>Token provider para encriptação dos cookies;</li>
+                                    <li>Textos utilizados palo two factor;</li>
+                                </ul>
+                            </p>
                         </dd>
                     </dl>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="mongo-db">
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Gestão de arquivos</dt>
+                        <dd>
+                            Remova do projeto a pasta Identity/SqlServer;<br/>
+                            Adicione ao projeto a pasta Identity/MongoDb;<br/><br />
+                            <ul>
+                                <li>
+                                    <b>Controllers/ClaimsAdminController</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Models;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Models;</li>
+                                                <li>using MongoDB.Driver.Builders;</li>
+                                            </ul>
+                                        </li>
+                                        <li>Comentar região "Sql Server"</li>
+                                        <li>Descomentar região "MongoDb"</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>Controllers/HomeController</b><br/>
+                                    <b>Controllers/ManageController</b><br />
+                                    <b>Controllers/AccountController</b><br />
+                                    <b>Controllers/UserAdminController</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>Controllers/RolesAdminController</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                                <li>using Microsoft.AspNet.Identity.EntityFramework;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Models;</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>App_Start/Startup.Auth</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                            </ul>
+                                        </li>
+                                        <li>Comentar região "Sql Server" iniciando nas linhas 24 e 38;</li>
+                                        <li>Descomentar região "Mongodb" iniciando nas linhas 29 e 65;</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>ViewModels/Claim/ClaimsListViewModel</b><br/>
+                                    <b>ViewModels/Home/SignOutViewModel</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer.Models;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb.Models;</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
                 <div class="col-md-12">
                     <dl>
                         <dt>Roles</dt>
@@ -187,7 +277,7 @@ db['aspnet-identity-users'].update(
                                 <li>Acesse o módulo /ClaimsAdmim/ e adicione o claim "AdmUsers";</li>
                                 <li>
                                     Acesse a collection "aspnet-identity-users" e identifique o usuário master da aplicação que irá gerenciar as claims executando o seguinte script:
-<pre>
+                                    <pre>
 db['aspnet-identity-users'].find();
 </pre>
                                 </li>
@@ -204,30 +294,192 @@ db['aspnet-identity-users'].find();
 </pre>
                                 </li>
                             </ol>
-                            Isso irá liberar o menu "Admin Users" onde poderá gerenciar os usuários da aplicação.<br />
+                            Isso irá liberar o menu "Admin Users" onde poderá gerenciar os usuários da aplicação.<br/>
                             Caso o menu não esteja visível, efetue o logout e login.
                         </dd>
                     </dl>
                 </div>
-                http://robomongo.org/
+            </div>
+            <div role="tabpanel" class="tab-pane" id="sql-server">
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Gestão de arquivos</dt>
+                        <dd>
+                            Remova do projeto a pasta Identity/MongoDb;<br />
+                            Adicione ao projeto a pasta Identity/SqlServer;<br /><br />
+                            <ul>
+                                <li>
+                                    <b>Controllers/ClaimsAdminController</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Models;</li>
+                                                <li>using MongoDB.Driver.Builders;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Models;</li>
+                                            </ul>
+                                        </li>
+                                        <li>Comentar região "MongoDb"</li>
+                                        <li>Descomentar região "Sql Server"</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>Controllers/HomeController</b><br />
+                                    <b>Controllers/ManageController</b><br />
+                                    <b>Controllers/AccountController</b><br />
+                                    <b>Controllers/UserAdminController</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>Controllers/RolesAdminController</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                                <li>using IdentitySample.Identity.MongoDb.Models;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer;</li>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                                <li>using Microsoft.AspNet.Identity.EntityFramework;</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>App_Start/Startup.Auth</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb.Manager;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer.Manager;</li>
+                                            </ul>
+                                        </li>
+                                        <li>Comentar região "Mongodb" iniciando nas linhas 29 e 65;</li>
+                                        <li>Descomentar região "Sql Server" iniciando nas linhas 24 e 38;</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <b>ViewModels/Claim/ClaimsListViewModel</b><br />
+                                    <b>ViewModels/Home/SignOutViewModel</b>
+                                    <ul>
+                                        <li>
+                                            Remover caso exista:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.MongoDb.Models;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Adicionar:
+                                            <ul>
+                                                <li>using IdentitySample.Identity.SqlServer.Models;</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Roles</dt>
+                        <dd>
+                            Para que possa gerenciar as roles da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
+                            <ol>
+                                <li>Na janela SQL Server Object Explorer acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
+                                <li>Acesse a tabela "AspNetRoles" e insira um registro com o nome "Admin" para acesso master ao módulos de gestão;</li>
+                                <li>Acesse a tabela "AspNetUserRoles" e insira um registro para relacionar o usuário master a regra "Admin";</li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Claims" onde poderá gerenciar as claims da aplicação.<br/>
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Claims</dt>
+                        <dd>
+                            Para que possa gerenciar as claims da aplicação, a primeira vez que for acessar o módulo, siga os passos abaixo.
+                            <ol>
+                                <li>Na janela SQL Server Object Explorer acesse o banco utilizado pela aplicação estabelecido no Web.config;</li>
+                                <li>Acesse a tabela "AspNetClaims" e insira um registro com o nome "AdmClaims" para acesso master ao módulos de gestão;</li>
+                                <li>Acesse a tabela "AspNetUserClaims" e insira um registro para relacionar o usuário master a regra "AdmClaims";</li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Roles" onde poderá gerenciar as roles da aplicação.<br/>
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Users</dt>
+                        <dd>
+                            Para que possa gerenciar os usuários, relacioná-los as claims e roles, siga os passos abaixo.
+                            <ol>
+                                <li>Acesse o módulo /ClaimsAdmim/ e adicione o claim "AdmUsers";</li>
+                                <li>Acesse a tabela "AspNetUserClaims" e insira um registro para relacionar o usuário master a regra "AdmUsers";</li>
+                            </ol>
+                            Isso irá liberar o menu "Admin Users" onde poderá gerenciar os usuários da aplicação.<br/>
+                            Caso o menu não esteja visível, efetue o logout e login.
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="references">
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Referências</dt>
+                        <dd>
+                            O projeto teve as seguintes referências:
+                            <ul>
+                                <li><a href="http://eduardopires.net.br/2014/08/asp-net-identity-tutorial-completo/" target="_blank">Eduardo Pires</a></li>
+                                <li><a href="http://devblog.weshigbee.name/posts/building-a-mongodb-provider-for-the-new-asp.net-identity-framework-part-1" target="_blank">WES HIGBEE | dev blog</a></li>
+                                <li><a href="http://brockallen.com/2014/04/09/introducing-thinktecture-identitymanager/" target="_blank">Blog Brockallen</a></li>
+                                <li><a href="https://github.com/g0t4/aspnet-identity-mongo-sample" target="_blank">Projeto aspnet-identity-mongo-sample</a></li>
+                                <li><a href="https://github.com/g0t4/aspnet-identity-mongo" target="_blank">Projeto aspnet-identity-mongo</a></li>
+                                <li><a href="https://github.com/InspectorIT/MongoDB.AspNet.Identity" target="_blank">Projeto MongoDB.AspNet.Identity</a></li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
             </div>
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="col-md-12">
-        <dl>
-            <dt>Referências</dt>
-            <dd>
-                O projeto teve as seguintes referências:
-                <ul>
-                    <li><a href="http://eduardopires.net.br/2014/08/asp-net-identity-tutorial-completo/" target="_blank">Eduardo Pires</a></li>
-                    <li><a href="http://devblog.weshigbee.name/posts/building-a-mongodb-provider-for-the-new-asp.net-identity-framework-part-1" target="_blank">WES HIGBEE | dev blog</a></li>
-                    <li><a href="http://brockallen.com/2014/04/09/introducing-thinktecture-identitymanager/" target="_blank">Blog Brockallen</a></li>
-                    <li><a href="https://github.com/g0t4/aspnet-identity-mongo-sample" target="_blank">Projeto aspnet-identity-mongo-sample</a></li>
-                    <li><a href="https://github.com/g0t4/aspnet-identity-mongo" target="_blank">Projeto aspnet-identity-mongo</a></li>
-                    <li><a href="https://github.com/InspectorIT/MongoDB.AspNet.Identity" target="_blank">Projeto MongoDB.AspNet.Identity</a></li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
 </div>

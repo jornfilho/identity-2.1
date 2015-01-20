@@ -94,8 +94,8 @@ namespace IdentitySample.Identity.MongoDb.Models
         public virtual void RemoveClaim(Claim claim)
         {
             var claimsToRemove = Claims
-                .Where(c => c.Type == claim.Type)
-                .Where(c => c.Value == claim.Value);
+                .Where(c => c.ClaimType == claim.Type)
+                .Where(c => c.ClaimValue == claim.Value);
 
             Claims = Claims.Except(claimsToRemove).ToList();
         }

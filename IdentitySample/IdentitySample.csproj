@@ -194,6 +194,8 @@
     <Compile Include="Identity\Configurations\UserValidatorConfig.cs" />
     <Compile Include="Identity\Global.cs" />
     <Compile Include="Identity\IdentityDatabaseTypes.cs" />
+    <Compile Include="Controllers\ClaimsAdminController.cs" />
+    <Compile Include="Identity\Filters\ClaimsAuthorize.cs" />
     <Compile Include="Identity\MongoDb\ApplicationDbContext.cs" />
     <Compile Include="Identity\MongoDb\ApplicationUser.cs" />
     <Compile Include="Identity\MongoDb\IdentityContext.cs" />
@@ -202,14 +204,12 @@
     <Compile Include="Identity\MongoDb\Manager\ApplicationSignInManager.cs" />
     <Compile Include="Identity\MongoDb\Manager\ApplicationUserManager.cs" />
     <Compile Include="Identity\MongoDb\Models\IdentityClaim.cs" />
-    <Compile Include="Identity\MongoDb\Models\IdentityUserClaim.cs" />
     <Compile Include="Identity\MongoDb\Models\IdentityClient.cs" />
     <Compile Include="Identity\MongoDb\Models\IdentityRole.cs" />
     <Compile Include="Identity\MongoDb\Models\IdentityUser.cs" />
+    <Compile Include="Identity\MongoDb\Models\IdentityUserClaim.cs" />
     <Compile Include="Identity\MongoDb\Models\RoleStore.cs" />
     <Compile Include="Identity\MongoDb\Models\UserStore.cs" />
-    <Compile Include="Controllers\ClaimsAdminController.cs" />
-    <Compile Include="Identity\Filters\ClaimsAuthorize.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />

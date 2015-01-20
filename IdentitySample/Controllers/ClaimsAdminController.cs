@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using IdentitySample.Identity.Filters;
 using IdentitySample.Identity.MongoDb;
 using IdentitySample.Identity.MongoDb.Manager;
 using IdentitySample.Identity.MongoDb.Models;
+using MongoDB.Driver.Builders;
 using IdentitySample.ViewModels.Claim;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
 
 namespace IdentitySample.Controllers
 {
@@ -127,7 +124,7 @@ namespace IdentitySample.Controllers
         }
 
         #region Sql Server
-        //private bool SaveClaim(IdentityUserClaim IdentityUserClaim)
+        //private bool SaveClaim(IdentityClaim IdentityUserClaim)
         //{
         //    try
         //    {

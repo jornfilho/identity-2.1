@@ -4,7 +4,6 @@ namespace IdentitySample.Identity.Configurations
 {
     public class IdentityConfigurations
     {
-        public IdentityDatabaseTypes DatabaseType { get; private set; }
         public UserValidatorConfig UserValidator { get; private set; }
         public PasswordValidatorConfig PasswordValidator { get; private set; }
         public LockoutConfig Lockout { get; private set; }
@@ -13,7 +12,6 @@ namespace IdentitySample.Identity.Configurations
 
         public IdentityConfigurations()
         {
-            DatabaseType = IdentityDatabaseTypes.MongoDb;
             UserValidator = new UserValidatorConfig(true, false);
             PasswordValidator = new PasswordValidatorConfig(6, false, false, false, false);
             Lockout = new LockoutConfig(true, TimeSpan.FromMinutes(5), 5);

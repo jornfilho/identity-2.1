@@ -7,9 +7,9 @@ namespace IdentitySample.Identity.MongoDb.Models
     {
         #region Propriedades
         [BsonElement("type")]
-        public string Type { get; set; }
+        public string ClaimType { get; set; }
         [BsonElement("value")]
-        public string Value { get; set; } 
+        public string ClaimValue { get; set; } 
         #endregion
 
         #region Construtor
@@ -19,14 +19,14 @@ namespace IdentitySample.Identity.MongoDb.Models
 
         public IdentityUserClaim(Claim claim)
         {
-            Type = claim.Type;
-            Value = claim.Value;
+            ClaimType = claim.Type;
+            ClaimValue = claim.Value;
         } 
         #endregion
 
         public Claim ToSecurityClaim()
         {
-            return new Claim(Type, Value);
+            return new Claim(ClaimType, ClaimValue);
         }
     }
 }
